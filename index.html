@@ -1,71 +1,16 @@
-<!DOCTYPE html> 
+<video width="800" autoplay controls="false">
+  <source src="https://uncensored.itzfrenz.repl.co/bin/video/videoplayback.mp4" type="video/mp4">
+</video>
 
-<html> 
+<script>
+  var vids = $("video"); 
+$.each(vids, function(){
+       this.controls = false; 
+}); 
+<script/>
 
-  
-
-<head> 
-
-    <title> 
-
-        pls
-
-    </title> 
-
-      
-
-    <link rel="stylesheet" href= 
-
-"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
-
-      
-
-    <script src='https://code.jquery.com/jquery-2.2.0.min.js'> 
-
-    </script> 
-
-    <script src= 
-
-'https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'> 
-
-    </script> 
-
-</head> 
-
-  
-
-<body style="text-align:center;"> 
-
-    <div class="container-fluid" style="margin:35px;"> 
-
-        <p style="font-size:30px;"> 
-
-            <strong> 
-
-                Click on the button for fun
-
-            </strong> 
-
-        </p> 
-
-          
-
-        <br><br> 
-
-      
-
-        <button class="btn btn-primary" onclick= 
-
-'$.playSound("https://frenzjay.github.io/prank-sound-girl-moan-scloudtomp3downloader.com.mp3")'> 
-
-            Click Me! 
-
-        </button> 
-
-    </div> 
-
-</body> 
-
-  
-
-</html>                
+<style>
+video::-webkit-media-controls {
+  display: none;
+}
+<style/>
