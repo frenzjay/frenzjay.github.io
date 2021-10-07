@@ -1,2 +1,3 @@
 # frenzjay.github.io
-lmao
+
+Site for me
