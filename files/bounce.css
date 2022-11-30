@@ -1,0 +1,1140 @@
+@font-face {
+  font-family: 'Clash Display Bold';
+  src: url('Fonts/Clash Display/ClashDisplay-Bold.otf');
+}
+
+@font-face {
+  font-family: 'Clash Display Semibold';
+  src: url('Fonts/Clash Display/ClashDisplay-Semibold.otf');
+}
+
+@font-face {
+  font-family: 'Clash Grotesk Medium';
+  src: url('Fonts/Clash Grotesk/ClashGrotesk-Medium.otf');
+}
+
+:root {
+	--white: #ffffff;
+
+	--light-gray: #EFEFEF;
+	--gray: #D8D8D8;
+
+	--black: #000000;
+	--dark-gray: #5E5E5E;
+
+	--cyan-dark: #28A489;
+	--cyan-normal: #70F1D5;
+	--cyan-light: #CAFFF3;
+
+	--pink-dark: #AB4787;
+	--pink-normal: #E065B3;
+	--pink-light: #FFB0E2;
+
+	--yellow-dark: #C9B951;
+	--yellow-normal: #FAE560;
+	--yellow-light: #FFF6BE;
+
+	--blue-dark: #468DB6;
+	--blue-normal: #54B8F3;
+	--blue-light: #B4E3FF;
+
+	--purple-dark: #643F9B;
+	--purple-normal: #9260DE;
+	--purple-light: #CDAEFD;
+} 
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	color: var(--black);
+	background: var(--white);
+}
+
+.no-bounce {
+	outline: none !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	transform: none !important
+}
+
+/* fix for glitch effect when hovering on bottom of elements (thanks to @nathanTi!) */
+card, button, table tr, a, .switch-container {
+  position: relative;
+}
+
+card:after, button:after, table tr:after, a:after, .switch-container:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: calc(100% + 4px);
+  border-radius: 4px;
+  height: calc(100% + 4px);
+  transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+  cursor: inherit;
+  border: none;
+	z-index: -1;
+}
+
+.switch-container:after {
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+card:hover:after, button:hover:after, table tr:hover:after, a:hover:after, .switch-container:hover:after {
+  transform: translateX(-5px) translateY(5px);
+}
+
+card:active:after, button:active:after, table tr:active:after, a:active:after, .switch-container:active:after {
+  transform: translateX(-3px) translateY(3px) !important;
+}
+button:disabled:after, button:disabled:hover:after, button.disabled:focus-visible:after {
+  transform: none;
+}
+
+
+h1 {
+	font-size: 64px;
+	line-height: 96px;
+	font-family: 'Clash Display Bold', sans-serif;
+}
+
+h2 {
+	font-size: 48px;
+	line-height: 80px;
+	font-family: 'Clash Display Bold', sans-serif;
+}
+
+h3 {
+	font-size: 32px;
+	line-height: 64px;
+	font-family: 'Clash Display Semibold', sans-serif;
+}
+
+h4 {
+	font-size: 24px;
+	line-height: 48px;
+	font-family: 'Clash Display Semibold', sans-serif;;
+}
+
+h5 {
+	font-size: 20px;
+	line-height: 40px;
+	font-family: 'Clash Display Semibold', sans-serif;;
+}
+
+h6 {
+	font-size: 16px;
+	line-height: 32px;
+	font-family: 'Clash Display Semibold', sans-serif;
+}
+
+p, b, u, s, li, mark, a, td, th, select {
+	font-size: 16px;
+	line-height: 28px;
+	font-family: 'Clash Grotesk Medium', sans-serif;;
+}
+
+ul {
+	margin: 8px 0 8px 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+ul > li {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+ul li::before {
+	content: "\2022";
+	border: 1px solid var(--black);
+	border-radius: 50%;
+	width: 4px;
+	height: 4px;
+	display: flex;
+	line-height: 5px;
+	font-size: 16px;
+	justify-content: center;
+}
+
+ul li.cyan::before {
+	color: var(--cyan-normal);	
+}
+
+ul li.pink::before {
+	color: var(--pink-normal);	
+}
+
+ul li.yellow::before {
+	color: var(--yellow-normal);	
+}
+
+ul li.blue::before {
+	color: var(--blue-normal);	
+}
+
+ul li.purple::before {
+	color: var(--purple-normal);	
+}
+
+ol {
+	margin: 8px 0 8px 12px;
+}
+
+ol li.cyan::marker {
+	color: var(--cyan-dark);	
+}
+
+ol li.pink::marker {
+	color: var(--pink-dark);	
+}
+
+ol li.yellow::marker {
+	color: var(--yellow-dark);	
+}
+
+ol li.blue::marker {
+	color: var(--blue-dark);	
+}
+
+ol li.purple::before {
+	color: var(--purple-dark);	
+}
+
+mark {
+	width: fit-content;
+	padding: 2px;
+	line-height: 20px;
+	margin: 4px 0 4px 0;
+}
+
+mark.cyan {
+	background: var(--cyan-light);
+}
+
+mark.pink {
+	background: var(--pink-light);
+}
+
+mark.yellow {
+	background: var(--yellow-light);
+}
+
+mark.blue {
+	background: var(--blue-light);
+}
+
+mark.purple {
+	background: var(--purple-light);
+}
+
+button {
+	font-size: 16px;
+	line-height: 24px;
+	font-family: Clash Display Semibold;
+	color: var(--black);
+	padding: 8px 32px;
+	border-radius: 2px;
+	outline: 2px solid var(--black);
+	cursor: pointer;
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	width: fit-content;
+	background: var(--white);
+	margin: 8px 0 8px 0;
+	border: none;
+}
+
+button.cyan {
+	background: var(--cyan-normal);
+}
+
+button.pink {
+	background: var(--pink-normal);
+}
+
+button.yellow {
+	background: var(--yellow-normal);
+}
+
+button.blue {
+	background: var(--blue-normal);
+}
+
+button.purple {
+	background: var(--purple-normal);
+}
+
+button:hover, button:focus-visible {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--gray), -5px 5px 0 2px var(--black);
+}
+
+button.cyan:hover, button.cyan:focus-visible {
+	box-shadow: -5px 5px 0 0 var(--cyan-dark), -5px 5px 0 2px var(--black);
+}
+
+button.pink:hover, button.pink:focus-visible {
+	box-shadow: -5px 5px 0 0 var(--pink-dark), -5px 5px 0 2px var(--black);
+}
+
+button.yellow:hover, button.yellow:focus-visible {
+	box-shadow: -5px 5px 0 0 var(--yellow-dark), -5px 5px 0 2px var(--black);
+}
+
+button.blue:hover, button.blue:focus-visible {
+	box-shadow: -5px 5px 0 0 var(--blue-dark), -5px 5px 0 2px var(--black);
+}
+
+button.purple:hover, button.purple:focus-visible {
+	box-shadow: -5px 5px 0 0 var(--purple-dark), -5px 5px 0 2px var(--black);
+}
+
+button:active {
+	transform: translateX(2px) translateY(-2px);
+	box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 2px var(--black);
+}
+
+button.cyan:active {
+	box-shadow: -3px 3px 0 0 var(--cyan-dark), -3px 3px 0 2px var(--black);
+}
+
+button.pink:active {
+	box-shadow: -3px 3px 0 0 var(--pink-dark), -3px 3px 0 2px var(--black);
+}
+
+button.yellow:active {
+	box-shadow: -3px 3px 0 0 var(--yellow-dark), -3px 3px 0 2px var(--black);
+}
+
+button.blue:active {
+	box-shadow: -3px 3px 0 0 var(--blue-dark), -3px 3px 0 2px var(--black);
+}
+
+button.purple:active {
+	box-shadow: -3px 3px 0 0 var(--purple-dark), -3px 3px 0 2px var(--black);
+}
+
+button:disabled, button:disabled:hover, button.disabled:focus-visible {
+	transform: none;
+	box-shadow: none;
+	cursor: not-allowed;
+	color: var(--gray);
+	background: var(--white);
+	outline: 2px solid var(--gray);
+}
+
+button.cyan:disabled, 
+button.cyan:disabled:hover, 
+button.cyan:disabled:active, 
+button.cyan:disabled:focus-visible {
+	outline: 2px solid var(--cyan-dark);
+	color: var(--cyan-dark);
+	background: var(--cyan-light);
+}
+
+button.pink:disabled, 
+button.pink:disabled:hover, 
+button.pink:disabled:active, 
+button.pink:disabled:focus-visible {
+	outline: 2px solid var(--pink-dark);
+	color: var(--pink-dark);
+	background: var(--pink-light);
+}
+
+button.yellow:disabled, 
+button.yellow:disabled:hover, 
+button.yellow:disabled:active, 
+button.yellow:disabled:focus-visible {
+	outline: 2px solid var(--yellow-dark);
+	color: var(--yellow-dark);
+	background: var(--yellow-light);
+}
+
+button.blue:disabled, 
+button.blue:disabled:hover, 
+button.blue:disabled:active, 
+button.blue:disabled:focus-visible { 
+	outline: 2px solid var(--blue-dark);
+	color: var(--blue-dark);
+	background: var(--blue-light);
+}
+
+button.purple:disabled, 
+button.purple:disabled:hover, 
+button.purple:disabled:active, 
+button.purple:disabled:focus-visible { 
+	outline: 2px solid var(--purple-dark);
+	color: var(--purple-dark);
+	background: var(--purple-light);
+}
+
+a {
+	text-decoration: none;
+	color: var(--black);
+	font-size: 16px;
+	padding: 2px 4px;
+	border-radius: 2px;
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	width: fit-content;
+	background: var(--white);
+	line-height: 20px;
+	outline: 1px solid var(--black);
+	display: inline-block;
+}
+
+a:hover, a:focus-visible {
+	outline: 1px solid var(--black);
+	transform: translateX(3px) translateY(-3px);
+	box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 1px var(--black);
+}
+
+a.cyan:hover, a.cyan:focus-visible {
+	box-shadow: -3px 3px 0 0 var(--cyan-normal), -3px 3px 0 1px var(--black);
+}
+
+a.pink:hover, a.pink:focus-visible {
+	box-shadow: -3px 3px 0 0 var(--pink-normal), -3px 3px 0 1px var(--black);
+}
+
+a.yellow:hover, a.yellow:focus-visible {
+	box-shadow: -3px 3px 0 0 var(--yellow-normal), -3px 3px 0 1px var(--black);
+}
+
+a.blue:hover, a.blue:focus-visible {
+	box-shadow: -3px 3px 0 0 var(--blue-normal), -3px 3px 0 1px var(--black);
+}
+
+a.purple:hover, a.purple:focus-visible {
+	box-shadow: -3px 3px 0 0 var(--purple-normal), -3px 3px 0 1px var(--black);
+}
+
+a:active {
+	outline: 1px solid var(--black);
+	transform: translateX(1.5px) translateY(-1.5px);
+	box-shadow: -1.5px 1.5px 0 0 var(--gray), -1.5px 1.5px 0 1px var(--black);
+}
+
+a.cyan:active {
+	box-shadow: -1.5px 1.5px 0 0 var(--cyan-normal), -1.5px 1.5px 0 1px var(--black);
+}
+
+a.pink:active {
+	box-shadow: -1.5px 1.5px 0 0 var(--pink-normal), -1.5px 1.5px 0 1px var(--black);
+}
+
+a.yellow:active {
+	box-shadow: -1.5px 1.5px 0 0 var(--yellow-normal), -1.5px 1.5px 0 1px var(--black);
+}
+
+a.blue:active {
+	box-shadow: -1.5px 1.5px 0 0 var(--blue-normal), -1.5px 1.5px 0 1px var(--black);
+}
+
+a.purple:active {
+	box-shadow: -1.5px 1.5px 0 0 var(--purple-normal), -1.5px 1.5px 0 1px var(--black);
+}
+
+input[type="text"] {
+	text-align: left;
+	font-size: 16px;
+	line-height: 24px;
+	font-family: Clash Display Semibold;
+	color: var(--black);
+	padding: 8px;
+	border-radius: 2px;
+	outline: 2px solid var(--gray);
+	cursor: pointer;
+	background: var(--light-gray);
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	width: fit-content;
+	margin: 8px 0 8px 0;
+	border: none;
+}
+
+input[type="text"]:hover {
+	transform: translateX(5px) translateY(-5px);
+	outline: 2px solid var(--black);
+	box-shadow: -5px 5px 0 0 var(--gray), -5px 5px 0 2px var(--black);
+}
+
+input[type="text"]:active {
+	box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 2px var(--black) !important;
+	transform: translateX(2px) translateY(-2px) !important;
+	outline: 2px solid var(--black) !important;
+}
+
+input[type="text"]:focus-visible {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--gray), -5px 5px 0 2px var(--black);
+}
+
+input[type="text"].cyan:focus-visible {
+	outline: 2px solid var(--cyan-normal);
+}
+
+input[type="text"].pink:focus-visible {
+	outline: 2px solid var(--pink-normal);
+}
+
+input[type="text"].yellow:focus-visible {
+	outline: 2px solid var(--yellow-normal);
+}
+
+input[type="text"].blue:focus-visible {
+	outline: 2px solid var(--blue-normal);
+}
+
+input[type="text"].purple:focus-visible {
+	outline: 2px solid var(--purple-normal);
+}
+
+input[type="text"]:disabled, 
+input[type="text"]:disabled:hover, input[type="text"]:disabled:active, input[type="text"]:disabled:focus-visible {
+	background: var(--white);
+	color: var(--gray);	
+	transform: none !important;
+	box-shadow: none !important;
+	outline: 2px solid var(--gray) !important;
+	cursor: not-allowed;
+}
+
+input[type="text"]:read-only:focus-visible {
+	outline: 2px solid var(--black);
+}
+
+input[type="text"]:disabled::placeholder {
+	color: var(--gray);
+}
+
+.checkbox-container {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+	gap: 8px;
+	margin: 8px 0 8px 0;
+	align-items: center;
+	width: fit-content;
+}
+
+.checkbox-container input {
+	position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-container checkmark {
+  height: 21px;
+  width: 21px;
+  background-color: var(--white);
+	outline: 1px solid var(--black);
+	border-radius: 2px;
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+}
+
+.checkbox-container input[type="checkbox"]:focus-visible ~ checkmark {
+  box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 1px var(--black);
+	transform: translateX(3px) translateY(-3px);
+}
+
+.checkbox-container:hover checkmark {
+  box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 1px var(--black);
+	transform: translateX(3px) translateY(-3px);
+}
+
+.checkbox-container:active checkmark {
+  box-shadow: -1.5px 1.5px 0 0 var(--gray), -1.5px 1.5px 0 1px var(--black);
+	transform: translateX(1.5px) translateY(-1.5px);
+}
+
+.checkbox-container input:checked ~ checkmark {
+  background: var(--black);
+}
+
+.checkbox-container.cyan input:checked ~ checkmark {
+  background: var(--cyan-normal);
+}
+
+.checkbox-container.pink input:checked ~ checkmark {
+  background: var(--pink-normal);
+}
+
+.checkbox-container.yellow input:checked ~ checkmark {
+	background: var(--yellow-normal);
+}
+
+.checkbox-container.blue input:checked ~ checkmark {
+	background: var(--blue-normal);
+}
+
+.checkbox-container.purple input:checked ~ checkmark {
+	background: var(--purple-normal);
+}
+
+.checkbox-container:hover input:checked ~ checkmark, .checkbox-container input[type="checkbox"]:checked:focus-visible ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--dark-gray), -3px 3px 0 1px var(--black);
+}
+
+.checkbox-container.cyan:hover input:checked ~ checkmark, .checkbox-container.cyan input[type="checkbox"]:checked:focus-visible ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--cyan-dark), -3px 3px 0 1px var(--black);
+}
+
+.checkbox-container.pink:hover input:checked ~ checkmark, .checkbox-container.pink input[type="checkbox"]:checked:focus-visible ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--pink-dark), -3px 3px 0 1px var(--black);
+}
+
+.checkbox-container.yellow:hover input:checked ~ checkmark, .checkbox-container.yellow input[type="checkbox"]:checked:focus-visible ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--yellow-dark), -3px 3px 0 1px var(--black);
+}
+
+.checkbox-container.blue:hover input:checked ~ checkmark, .checkbox-container.blue input[type="checkbox"]:checked:focus-visible ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--blue-dark), -3px 3px 0 1px var(--black);
+}
+
+.checkbox-container.purple:hover input:checked ~ checkmark, .checkbox-container.purple input[type="checkbox"]:checked:focus-visible ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--purple-dark), -3px 3px 0 1px var(--black);
+}
+
+.checkbox-container:active input:checked ~ checkmark, .checkbox-container input[type="checkbox"]:focus-visible:active ~ checkmark, .checkbox-container input[type="checkbox"]:checked:focus-visible:active ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--dark-gray), -1.5px 1.5px 0 1px var(--black);
+	transform: translateX(1.5px) translateY(-1.5px);
+}
+
+.checkbox-container.cyan:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--cyan-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.checkbox-container.pink:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--pink-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.checkbox-container.yellow:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--yellow-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.checkbox-container.blue:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--blue-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+
+.checkbox-container.purple:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--purple-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.checkbox-container checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+	top: 6px;
+	width: 5px;
+	height: 10px;
+	border: solid var(--white);
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ checkmark:after {
+  display: block;
+}
+
+.checkbox-container.cyan checkmark:after, .checkbox-container.pink checkmark:after, .checkbox-container.yellow checkmark:after, .checkbox-container.blue checkmark:after, .checkbox-container.purple checkmark:after {
+	border-color: var(--black);
+}
+
+.checkbox-container:hover checkmark:after {
+	top: 3px;
+}
+
+.radio-container {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+	gap: 8px;
+	margin: 8px 0 8px 0;
+	align-items: center;
+	width: fit-content;
+}
+
+.radio-container input {
+	position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radio-container checkmark {
+  height: 21px;
+  width: 21px;
+  background-color: var(--white);
+	outline: 1px solid var(--black);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+}
+
+.radio-container input[type="radio"]:focus-visible ~ checkmark {
+  box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 1px var(--black);
+	transform: translateX(3px) translateY(-3px);
+}
+
+.radio-container:hover checkmark {
+  box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 1px var(--black);
+	transform: translateX(3px) translateY(-3px);
+}
+
+.radio-container:active checkmark {
+  box-shadow: -1.5px 1.5px 0 0 var(--gray), -1.5px 1.5px 0 1px var(--black);
+	transform: translateX(1.5px) translateY(-1.5px);
+}
+
+.radio-container:hover input:checked ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 1px var(--black);
+}
+
+.radio-container.cyan:hover input:checked ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--cyan-light), -3px 3px 0 1px var(--cyan-normal);
+}
+
+.radio-container.pink:hover input:checked ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--pink-light), -3px 3px 0 1px var(--pink-normal);
+}
+
+.radio-container.yellow:hover input:checked ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--yellow-light), -3px 3px 0 1px var(--yellow-normal);
+}
+
+.radio-container.blue:hover input:checked ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--blue-light), -3px 3px 0 1px var(--blue-normal);
+}
+
+.radio-container.purple:hover input:checked ~ checkmark {
+	box-shadow: -3px 3px 0 0 var(--purple-light), -3px 3px 0 1px var(--purple-normal);
+}
+
+.radio-container:active input:checked ~ checkmark, .radio-container input:checked:active:focus-visible ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--gray), -1.5px 1.5px 0 1px var(--black);
+	transform: translateX(1.5px) translateY(-1.5px);
+}
+
+.radio-container.cyan:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--cyan-light), -1.5px 1.5px 0 1px var(--cyan-normal);
+}
+
+.radio-container.pink:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--pink-light), -1.5px 1.5px 0 1px var(--pink-dark);
+}
+
+.radio-container.yellow:active input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--yellow-light), -1.5px 1.5px 0 1px var(--yellow-dark);
+}
+
+.radio-container.blue:hover input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--blue-light), -1.5px 1.5px 0 1px var(--blue-normal);
+}
+
+.radio-container.purple:hover input:checked ~ checkmark {
+	box-shadow: -1.5px 1.5px 0 0 var(--purple-light), -1.5px 1.5px 0 1px var(--purple-normal);
+}
+
+.radio-container.cyan input:checked ~ checkmark {
+	outline: 1px solid var(--cyan-normal);
+}
+
+.radio-container.pink input:checked ~ checkmark {
+	outline: 1px solid var(--pink-normal);
+}
+
+.radio-container.yellow input:checked ~ checkmark {
+	outline: 1px solid var(--yellow-normal);
+}
+
+.radio-container.blue input:checked ~ checkmark {
+	outline: 1px solid var(--blue-normal);
+}
+
+.radio-container.purple input:checked ~ checkmark {
+	outline: 1px solid var(--purple-normal);
+}
+
+.radio-container checkmark:after {
+  content: "";
+  display: none;
+	width: 12px;
+	height: 12px;
+	background: var(--black);
+	border-radius: 50%;
+}
+
+.radio-container.cyan checkmark:after {
+	background: var(--cyan-normal)
+}
+
+.radio-container.pink checkmark:after {
+	background: var(--pink-normal)
+}
+
+.radio-container.yellow checkmark:after {
+	background: var(--yellow-normal)
+}
+
+.radio-container.blue checkmark:after {
+	background: var(--blue-normal)
+}
+
+.radio-container.purple checkmark:after {
+	background: var(--purple-normal)
+}
+
+.radio-container input:checked ~ checkmark:after {
+  display: block;
+}
+
+.switch-container {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 18px;
+	margin: 8px 0 8px 0;
+	outline: 1px solid var(--black);
+	border-radius: 16px;
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+}
+
+.switch-container:hover, .switch-container:has(input[type="checkbox"]:focus-visible) {
+  box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 1px var(--black);
+	transform: translateX(3px) translateY(-3px);
+}
+
+.switch-container:has(input:checked):hover, .switch-container:has(input[type="checkbox"]:checked:focus-visible) {
+	box-shadow: -3px 3px 0 0 var(--dark-gray), -3px 3px 0 1px var(--black);
+}
+
+.switch-container.cyan:has(input:checked):hover, .switch-container.cyan:has(input[type="checkbox"]:checked:focus-visible) {
+	box-shadow: -3px 3px 0 0 var(--cyan-dark), -3px 3px 0 1px var(--black);
+}
+
+.switch-container.pink:has(input:checked):hover, .switch-container.pink:has(input[type="checkbox"]:checked:focus-visible) {
+	box-shadow: -3px 3px 0 0 var(--pink-dark), -3px 3px 0 1px var(--black);
+}
+
+.switch-container.yellow:has(input:checked):hover, .switch-container.yellow:has(input[type="checkbox"]:checked:focus-visible) {
+	box-shadow: -3px 3px 0 0 var(--yellow-dark), -3px 3px 0 1px var(--black);
+}
+
+.switch-container.blue:has(input:checked):hover, .switch-container.blue:has(input[type="checkbox"]:checked:focus-visible) {
+	box-shadow: -3px 3px 0 0 var(--blue-dark), -3px 3px 0 1px var(--black);
+}
+
+.switch-container.purple:has(input:checked):hover, .switch-container.purple:has(input[type="checkbox"]:checked:focus-visible) {
+	box-shadow: -3px 3px 0 0 var(--purple-dark), -3px 3px 0 1px var(--black);
+}
+
+.switch-container:has(input:checked):active, .switch-container:has(input[type="checkbox"]:focus-visible:active) {
+	box-shadow: -1.5px 1.5px 0 0 var(--dark-gray), -1.5px 1.5px 0 1px var(--black);
+	transform: translateX(1.5px) translateY(-1.5px);
+}
+
+.switch-container:active, .switch-container:has(input[type="checkbox"]:focus-visible:active) {
+	box-shadow: -1.5px 1.5px 0 0 var(--gray), -1.5px 1.5px 0 1px var(--black);
+	transform: translateX(1.5px) translateY(-1.5px);
+}
+
+.switch-container.cyan:has(input:checked):active, .switch-container.cyan:has(input[type="checkbox"]:focus-visible:active) {
+	box-shadow: -1.5px 1.5px 0 0 var(--cyan-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.switch-container.pink:has(input:checked):active, .switch-container.pink:has(input[type="checkbox"]:focus-visible:active) {
+	box-shadow: -1.5px 1.5px 0 0 var(--pink-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.switch-container.yellow:has(input:checked):active, .switch-container.yellow:has(input[type="checkbox"]:focus-visible:active) {
+	box-shadow: -1.5px 1.5px 0 0 var(--yellow-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.switch-container.blue:has(input:checked):active, .switch-container.blue:has(input[type="checkbox"]:focus-visible:active) {
+	box-shadow: -1.5px 1.5px 0 0 var(--blue-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.switch-container.purple:has(input:checked):active, .switch-container.purple:has(input[type="checkbox"]:focus-visible:active) {
+	box-shadow: -1.5px 1.5px 0 0 var(--purple-dark), -1.5px 1.5px 0 1px var(--black);
+}
+
+.switch-container input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-container checkmark {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--gray);
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	border-radius: 16px;
+}
+
+.switch-container checkmark:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  background-color: var(--white);
+	outline: 1px solid var(--black);
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	border-radius: 50%;
+}
+
+.switch-container input:checked + checkmark {
+  background-color: var(--black);
+}
+
+.switch-container.cyan input:checked + checkmark {
+  background-color: var(--cyan-normal);
+}
+
+.switch-container.pink input:checked + checkmark {
+	background-color: var(--pink-normal);
+}
+
+.switch-container.yellow input:checked + checkmark {
+	background-color: var(--yellow-normal);
+}
+
+.switch-container.blue input:checked + checkmark {
+	background-color: var(--blue-normal);
+}
+
+.switch-container.purple input:checked + checkmark {
+	background-color: var(--purple-normal);
+}
+
+.switch-container input:checked + checkmark:before {
+  transform: translateX(30px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+img {
+	border-radius: 2px;
+	outline: 2px solid var(--black);
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+}
+
+img:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--gray), -5px 5px 0 2px var(--black);
+}
+
+img.cyan:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--cyan-normal), -5px 5px 0 2px var(--black);
+}
+
+img.pink:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--pink-normal), -5px 5px 0 2px var(--black);
+}
+
+img.yellow:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--yellow-normal), -5px 5px 0 2px var(--black);
+}
+
+img.blue:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--blue-normal), -5px 5px 0 2px var(--black);
+}
+
+img.purple:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--purple-normal), -5px 5px 0 2px var(--black);
+}
+
+select {
+	padding: 8px;
+	border-radius: 2px;
+	background: var(--white);
+	outline: 2px solid var(--black);
+	cursor: pointer;
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	border: none;
+}
+
+select:hover, select:focus-visible {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--gray), -5px 5px 0 2px var(--black);
+}
+
+select:active {
+	box-shadow: -3px 3px 0 0 var(--gray), -3px 3px 0 2px var(--black);
+	transform: translateX(2px) translateY(-2px);
+}
+
+card {
+	border-radius: 2px;
+	outline: 2px solid var(--black);
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	background: var(--white);
+}
+
+card:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--gray), -5px 5px 0 2px var(--black);
+}
+
+card.cyan:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--cyan-normal), -5px 5px 0 2px var(--black);
+}
+
+card.pink:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--pink-normal), -5px 5px 0 2px var(--black);
+}
+
+card.yellow:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--yellow-normal), -5px 5px 0 2px var(--black);
+}
+
+card.blue:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--blue-normal), -5px 5px 0 2px var(--black);
+}
+
+card.purple:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--purple-normal), -5px 5px 0 2px var(--black);
+}
+
+table {
+	border-radius: 2px;
+	border-spacing: 0;
+	outline: 2px solid var(--black);
+	display: flex;
+	flex-direction: column;
+}
+
+table tr {
+	background: var(--white);
+	transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5), box-shadow 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.5);
+	display: flex;
+}
+
+table tr:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+
+table tr:hover {
+	transform: translateX(5px) translateY(-5px);
+	box-shadow: -5px 5px 0 0 var(--gray), -5px 5px 0 2px var(--black);
+	outline: 2px solid black;
+}
+
+table tr:first-chid:hover {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+
+table tr:last-child:hover {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+table tr:hover > td {
+	border-bottom: none !important;
+}
+
+table th, table td {
+	padding: 8px;
+	flex: 1; 
+}
+
+table th {
+	background: var(--light-gray);
+	text-align: left;
+	font-family: 'Clash Display Semibold', sans-serif;
+}
+
+table th, table td:not(table tr:last-child td) {
+/* 	border-bottom: 2px solid var(--black); */
+	box-shadow: 0 2px 0 var(--black);
+}
+
+table th:not(table tr th:last-child), table td:not(table tr td:last-child) {
+	border-right: 2px solid var(--black);
+}
+
+hr {
+	height: 2px;
+	border-radius: 2px;
+	border: none;
+	background: var(--dark-gray);
+	margin: 32px 0 32px 0;
+}
+
+hr.cyan {
+	background: var(--cyan-dark);
+}
+
+hr.pink {
+	background: var(--pink-dark);
+}
+
+hr.yellow {
+	background: var(--yellow-dark);
+}
+
+hr.blue {
+	background: var(--blue-dark);
+}
+
+hr.purple {
+	background: var(--purple-dark);
+}
+
+::selection {
+	background: var(--gray);
+	color: var(--black);
+	background-clip: revert;
+	-webkit-text-fill-color: var(--black);
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+	outline: 1px solid var(--black);
+
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyan-normal);
+	border-radius: 20px;
+	outline: 1px solid var(--black);
+}
