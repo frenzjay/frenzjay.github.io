@@ -7,11 +7,11 @@
 
 <p align="left"> <a href="https://twitter.com/" target="blank"><img src="https://img.shields.io/twitter/follow/?logo=twitter&style=for-the-badge" alt="" /></a> </p>
 
-- 🔭 I’m currently working on [FEQAB](https://frenzvalios.tk/research/ai/)
+- 🔭 I’m currently working on [Gibberish](https://frenzvalios.xyz/gibberish)
 
 - 🌱 I’m currently learning **C++ and Java**
 
-- 👨‍💻 All of my projects are available at [https://frenzvalios.tk](https://frenzvalios.tk)
+- 👨‍💻 All of my projects are available at [https://frenzvalios.xyz](https://frenzvalios.xyz)
 
 - 📫 How to reach me **https://frenzvalios.tk**
 
