@@ -13,7 +13,7 @@
 
 - 👨‍💻 All of my projects are available at [https://frenzvalios.xyz](https://frenzvalios.xyz)
 
-- 📫 How to reach me **https://frenzvalios.tk**
+- 📫 How to reach me **https://frenzvalios.xyz**
 
 - ⚡ Fun fact **I am tall**
 
