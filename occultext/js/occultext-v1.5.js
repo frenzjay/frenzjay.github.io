@@ -40,7 +40,7 @@ document.getElementById('generate-form').addEventListener('submit', function(eve
     event.preventDefault();
     const word = document.getElementById('word').value;
     const secretKey = document.getElementById('generate-secret_key').value;
-    fetch('https://skilled-emu-seriously.ngrok-free.app/api/occultext/generate', {
+    fetch('https://frenzvalios.pythonanywhere.com/api/occultext/generate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ document.getElementById('decrypt-form').addEventListener('submit', function(even
     event.preventDefault();
     const occultext = document.getElementById('occultext').value;
     const secretKey = document.getElementById('decrypt-secret_key').value;
-    fetch(`https://skilled-emu-seriously.ngrok-free.app/api/occultext/decrypt/atlas?occultext=${encodeURIComponent(occultext)}&secret_key=${encodeURIComponent(secretKey)}`)
+    fetch(`https://frenzvalios.pythonanywhere.com/api/occultext/decrypt/atlas?occultext=${encodeURIComponent(occultext)}&secret_key=${encodeURIComponent(secretKey)}`)
     .then(response => response.json())
     .then(data => {
         if (data.error) {
