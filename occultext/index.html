@@ -39,5 +39,10 @@
   </iframe>
 
 </body>
-
+<script>
+  window.onload = () => {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ type: "resize", height }, "https://skilled-emu-seriously.ngrok-free.app/occultext");
+  };
+</script>
 </html>
