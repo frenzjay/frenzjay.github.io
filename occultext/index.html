@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Occultext - The mysterious language</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/frenz.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/occultext-v2.2.css">
+    <link rel="stylesheet" href="css/anim.css">
+    <script src="js/occultext-v1.5.js" defer></script>
+</head>
+<body>
+    <header class="fade-in">
+        <nav>
+            <div class="logo">
+                <h1>Occultext v10.2</h1>
+                <span class="franzannrinbo" id="franzannrinbo">Franzann delulu</span>
+            </div>
+       <!--     <ul>
+                <li><a href="https://frenzvalios.com">Home</a></li>
+                <li><a href="https://github.com/franzann/Occultext-Translate-Realtime">Extension</a></li>
+                <li><a href="https://frenzvalios.com/static/page/html/occultext-api.html">API</a></li>
+            </ul> -->
+        </nav>
+    </header>
+    <main>
+        <section class="frenz slide-in">
+            <h2>The Mysterious Language</h2>
+            <p>Turn ordinary Text into Occultext.</p>
+        </section>
+        <section class="occultext-container">
+            <div class="le-button">
+                <button id="toggle-to-generate" class="toggle-btn active">Conceal Occultext</button>
+                <button id="toggle-to-decrypt" class="toggle-btn">Uncover Occultext</button>
+            </div>
+            <div class="occultext-form fade-in" id="generate-form-container">
+                <h3>Conceal as Occultext</h3>
+                <form id="generate-form">
+                    <div class="form-group">
+                        <label for="word">Enter a word:</label>
+                        <textarea id="word" name="word" rows="8" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="generate-secret_key">Secret key (optional):</label>
+                        <input id="generate-secret_key" name="secret_key" type="text">
+                    </div>
+                    <button type="submit">Veil it!</button>
+                </form>
+            </div>
+            <div class="occultext-form fade-in" id="decrypt-form-container" style="display:none;">
+                <h3>Uncover from Occultext</h3>
+                <form id="decrypt-form" onsubmit="removeSpaces(); removeAllSpaces()">
+                    <div class="form-group">
+                        <label for="occultext">Enter an Occultext:</label>
+                        <textarea id="occultext" name="occultext" rows="8"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="decrypt-secret_key">Secret key (optional):</label>
+                        <input id="decrypt-secret_key" name="secret_key" type="text">
+                    </div>
+                    <button type="submit">Unveil it!</button>
+                </form>
+            </div>
+        </section>
+        <section class="results" id="results" hidden>
+            <div class="result fade-in" id="generate-result" hidden>
+                <h3>Original:</h3>
+                <pre id="original-word"></pre>
+                <h3>Occultext:</h3>
+                <pre id="occultext-word"></pre>
+                <button class="copy" onclick="copyToClipboard(document.getElementById('occultext-word').textContent)">Copy Occultext</button>
+            </div>
+            <div class="result fade-in" id="decrypt-result" hidden>
+                <h3>Occultext:</h3>
+                <div id="decrypted-word"></div>
+            </div>
+            <div class="error fade-in" id="error-result" hidden>
+                <p id="error-message"></p>
+            </div>
+        </section>
+    </main>
+    <footer class="fade-in">
+        <p>Made by Frenz because he was bored lol. Last edited: 5:53 pm - 8/27/2024</p>
+    </footer>
+    <script>
+    window.addEventListener("message", (event) => {
+  if (event.origin !== "https://frenzjay.github.io/occultext") return;
+
+  if (event.data.type === "resize") {
+    document.getElementById("myIframe").style.height = event.data.height + "px";
+  }
+});
+</script>
+</body>
+</html>
