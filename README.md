@@ -1,2 +1,3 @@
 # frenzjay.github.io
-Hoooo
+
+This is a new repo‚ I privated my old one due to history things. 
