@@ -3,78 +3,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Introduction to Computing</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #111827;
-      --muted: #94a3b8;
-      --text: #e5e7eb;
-      --accent: #38bdf8;
-      --accent-2: #a78bfa;
-      --card: #0b1220;
-      --chip: #1f2937;
-      --ok: #22c55e;
-    }* { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
-  margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background: radial-gradient(1200px 800px at 10% -10%, #0b1220 20%, var(--bg) 60%);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-.wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
-
-header {
-  display: grid; gap: 10px; justify-items: start;
-  padding: 18px 20px; margin-bottom: 24px;
-  background: linear-gradient(180deg, rgba(56,189,248,.08), rgba(167,139,250,.08));
-  border: 1px solid rgba(148,163,184,.18);
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-}
-
-h1 { margin: 0; font-size: clamp(28px, 3vw, 40px); letter-spacing: .2px; }
-.subtitle { color: var(--muted); font-size: 15px; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-.chip { padding: 6px 10px; background: var(--chip); color: #cbd5e1; border-radius: 999px; font-size: 12px; border: 1px solid rgba(148,163,184,.18) }
-
-section { margin: 26px 0; }
-
-.card {
-  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  border: 1px solid rgba(148,163,184,.15);
-  border-radius: 16px; padding: 18px 16px; box-shadow: 0 6px 18px rgba(2,6,23,.35);
-}
-
-h2 { margin: 0 0 8px; font-size: clamp(20px, 2.2vw, 26px) }
-h3 { margin: 18px 0 6px; font-size: 18px; color: #c7d2fe }
-p { margin: 8px 0 }
-
-ul { margin: 8px 0 8px 18px }
-li { margin: 6px 0 }
-
-.grid { display: grid; gap: 16px }
-@media (min-width: 820px) { .grid { grid-template-columns: 1.1fr 1fr } }
-
-.tip { font-size: 13px; color: #cbd5e1; background: #0b1220; border-left: 3px solid var(--accent); padding: 10px 12px; border-radius: 8px }
-
-.quote { font-style: italic; color: #c7d2fe }
-
-.footer {
-  margin-top: 40px; text-align: center; color: var(--muted); font-size: 13px
-}
-
-.checklist li { list-style: none; position: relative; padding-left: 28px }
-.checklist input { position: absolute; left: 0; top: 3px }
-
-.timeline { border-left: 2px dashed rgba(148,163,184,.25); padding-left: 14px; margin-left: 6px }
-.t { margin: 14px 0 }
-.t .when { font-weight: 700; color: var(--accent) }
-.kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; background: #101826; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(148,163,184,.15) }
-
-  </style>
+  <link rel="stylesheet" href="/static/css/notes-style.css">
 </head>
 <body>
   <div class="wrap">
@@ -160,7 +89,24 @@ li { margin: 6px 0 }
     <li><strong>Steve Jobs</strong> &amp; <strong>Steve Wozniak</strong> — <em>hinumdumi ni sila</em> (remember them).</li>
   </ul>
 </section>
+<section class="card">
+      <h2>Test I — Enumeration</h2>
+      <ol>
+        <li>1–4: four components</li>
+        <li>5–7: Pre-1800s mechanical devices <em>ata to</em>, basta ang mga answer ra namo ana kay <strong>ABACUS</strong>, <strong>NAPIER'S BONES</strong>, <strong>PASCALINE</strong>, <strong>STEPPED RECKONER</strong></li>
+        <li>8–10: <em>nakalimot ko haha pero I think nagment si sir about advantages something like that</em> — hay ang answers namo kay <strong>more efficient, smaller size, consume less power</strong></li>
+        <li>11–15: <em>kalimot ko sa gipanumerate ni sir ani</em> pero ang among answers kay <strong>TABLET, LAPTOP, SMARTPHONES, DESKTOP COMPUTERS, SERVER UG SUPER COMPUTER</strong></li>
+      </ol>
 
+      <h3>Additional Notes</h3>
+      <ul>
+        <li><strong>IBM PC &amp; Microsoft and Software Development</strong> — <em>read and familiarize ra (kay wako kanumdom ani)</em></li>
+        <li><strong>World Wide Web / WWW — Tim Berners-Lee</strong> → <span class="tip">kani basaha gid</span></li>
+        <li><strong>Mobile Computing and Smartphones (2000s)</strong> — <em>iPhone introduced in 2007" nagment si sir ana</em></li>
+        <li><strong>Cloud Computing and Artificial Intelligence (2010s–Present)</strong> — <em>read and familiarize kay nament na ni sir</em></li>
+        <li><strong>SUPER COMPUTER</strong> — <em>kani sab naa ni</em></li>
+      </ul>
+    </section>
 <p class="footer">Made with ♥️  by Frenz</p>
 
   </div>
