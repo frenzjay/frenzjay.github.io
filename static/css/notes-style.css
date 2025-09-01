@@ -67,3 +67,12 @@ li { margin: 6px 2px }
 .t { margin: 14px 0 }
 .t .when { font-weight: 700; color: var(--accent) }
 .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; background: #101826; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(148,163,184,.15) }
+
+.screenshot {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
