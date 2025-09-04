@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Number converter</title>
+  <link rel="stylesheet" href="/static/css/notes-style.css">
+  <style>
+    .converter-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-width: 500px;
+      margin-top: 1rem;
+      background: #1e293b;
+      padding: 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    input, select, button {
+      padding: 0.6rem 0.8rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #f8fafc;
+      transition: all 0.2s ease-in-out;
+    }
+    input::placeholder { color: #94a3b8; }
+    input:focus, select:focus {
+      outline: none; border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.4);
+    }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' width='20' viewBox='0 0 20 20'><path d='M5.516 7.548l4.484 4.484 4.484-4.484-1.06-1.06L10 9.91 6.576 6.488z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem center;
+      background-size: 1rem;
+      padding-right: 2rem;
+      cursor: pointer;
+    }
+    button { background: #38bdf8; color: #0f172a; font-weight: bold; border: none; }
+    button:hover { background: #0ea5e9; }
+    button:active { transform: scale(0.97); }
+    .solution, .error-box {
+      background: #1e293b; color: #f8fafc;
+      border-radius: 12px; padding: 1rem; margin-top: 1rem;
+      font-family: monospace; overflow-x: auto;
+    }
+    .error-box { border: 1px solid #ef4444; color: #fca5a5; }
+    .division-steps { display: flex; align-items: center; gap: 0.5rem; margin: 1rem 0; }
+    .steps-column { display: flex; flex-direction: column; gap: 0.3rem; }
+    .step-box { border: 1px solid #475569; border-radius: 4px; padding: 0.3rem 0.6rem; background: #0f172a; }
+    .arrow { font-size: 2rem; color: #38bdf8; align-self: stretch; display: flex; align-items: center; justify-content: center; padding: 0 0.5rem; }
+    .arrow::after { content: "↑"; font-size: 2rem; }
+    .hex-boxes { display: flex; gap: 1rem; margin: 1rem 0; flex-wrap: wrap; }
+    .hex-group { border: 2px solid #94a3b8; border-radius: 8px; padding: 0.5rem; text-align: center; background: #0f172a; min-width: 80px; }
+    .bits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 0.5rem; }
+    .bit { padding: 0.3rem; border: 1px solid #475569; border-radius: 4px; background: #1e293b; }
+    .weights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; font-size: 0.8rem; color: #94a3b8; }
+    .hex-result { margin-top: 0.3rem; font-weight: bold; color: #38bdf8; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>CC101 Number converter</h1>
+      <div class="subtitle">Sir‚ tapos na po</div>
+    </header>
+
+    <section class="card">
+      <h2>Convert</h2>
+      <div class="converter-box">
+        <input type="text" id="inputNumber" placeholder="Enter number or text" />
+        <label>From:</label>
+        <select id="fromBase">
+          <option value="10">Decimal</option>
+          <option value="2">Binary</option>
+          <option value="8">Octal</option>
+          <option value="16">Hexadecimal</option>
+          <option value="text">Text</option>
+          <option value="binaryText">Binary (Text)</option>
+        </select>
+        <label>To:</label>
+        <select id="toBase">
+          <option value="2">Binary</option>
+          <option value="8">Octal</option>
+          <option value="16">Hexadecimal</option>
+          <option value="10">Decimal</option>
+          <option value="text">Text</option>
+          <option value="binaryText">Binary (Text)</option>
+        </select>
+        <button onclick="convertNumber()">Convert</button>
+      </div>
+      <div id="results"></div>
+    </section>
+
+    <p class="footer">Made with ❤️ by Frenz</p>
+  </div>
+
+  <script>
+    function showError(message) {
+      document.getElementById("results").innerHTML = `
+        <div class="error-box"><strong>Error:</strong> ${message}</div>
+      `;
+    }
+
+    function convertNumber() {
+      const value = document.getElementById("inputNumber").value.trim();
+      const fromBase = document.getElementById("fromBase").value;
+      const toBase = document.getElementById("toBase").value;
+
+      if (!value) {
+        showError("Please enter a value to convert.");
+        return;
+      }
+
+      let explanation = "";
+      let converted = "";
+
+      if (fromBase === "text" && toBase === "binaryText") {
+        let binaries = [];
+        for (let i = 0; i < value.length; i++) {
+          let bin = value.charCodeAt(i).toString(2).padStart(8, "0");
+          binaries.push(`${value[i]} = ${bin}`);
+        }
+        converted = binaries.map(b => b.split(" = ")[1]).join(" ");
+        explanation = "<p>Each character converted to 8-bit binary:</p>" +
+                      binaries.map(b => `<div class="step-box">${b}</div>`).join("");
+      }
+      else if (fromBase === "binaryText" && toBase === "text") {
+        if (!/^[01\s]+$/.test(value)) {
+          showError("Binary (Text) can only contain 0 and 1 (optionally spaces). Example: 01001000 01101001");
+          return;
+        }
+        let groups = value.replace(/\s+/g, "").match(/.{1,8}/g);
+        if (!groups || groups[groups.length-1].length !== 8) {
+          showError("Binary (Text) must be in groups of 8 bits (1 byte per character). Example: 01001000 = H");
+          return;
+        }
+        let chars = groups.map(g => String.fromCharCode(parseInt(g, 2)));
+        converted = chars.join("");
+        explanation = "<p>Each 8 bits converted back to ASCII:</p>" +
+                      groups.map((g,i) => `<div class="step-box">${g} = ${chars[i]}</div>`).join("");
+      }
+      else if (fromBase === "text" || toBase === "text" || fromBase === "binaryText" || toBase === "binaryText") {
+        showError("Invalid conversion. You can only convert Text ↔ Binary (Text), not directly into Decimal, Hex, or Octal.");
+        return;
+      }
+      else {
+        let fromNumBase = parseInt(fromBase);
+        let toNumBase = parseInt(toBase);
+        let decimalValue;
+
+        try {
+          decimalValue = parseInt(value, fromNumBase);
+          if (isNaN(decimalValue)) throw new Error();
+        } catch {
+          showError(`The input "${value}" is not valid for base ${fromNumBase}.`);
+          return;
+        }
+
+        converted = decimalValue.toString(toNumBase).toUpperCase();
+
+        if (fromBase === "10") {
+          function divisionStepsVisual(num, base) {
+            let steps = [];
+            let n = num;
+            while (n > 0) {
+              let remainder = n % base;
+              steps.push(`${n} ÷ ${base} = ${Math.floor(n/base)} R ${remainder}`);
+              n = Math.floor(n / base);
+            }
+            let stepBoxes = steps.map(s => `<div class="step-box">${s}</div>`).join("");
+            return `<div class="division-steps"><div class="steps-column">${stepBoxes}</div><div class="arrow"></div></div>`;
+          }
+          if (toBase === "2") explanation = divisionStepsVisual(decimalValue, 2);
+          if (toBase === "8") explanation = divisionStepsVisual(decimalValue, 8);
+          if (toBase === "16") {
+            let bin = decimalValue.toString(2);
+            while (bin.length % 4 !== 0) bin = "0" + bin;
+            let groups = bin.match(/.{1,4}/g);
+            let hexBoxes = `<p>Binary form: ${bin}</p><div class="hex-boxes">`;
+            groups.forEach((grp) => {
+              const weights = [8,4,2,1];
+              let sum = 0, bitsHtml = "", weightHtml = "";
+              grp.split("").forEach((bit, i) => {
+                sum += parseInt(bit) * weights[i];
+                bitsHtml += `<div class="bit">${bit}</div>`;
+                weightHtml += `<div>${weights[i]}</div>`;
+              });
+              let hexDigit = sum.toString(16).toUpperCase();
+              hexBoxes += `<div class="hex-group"><div class="bits">${bitsHtml}</div><div class="weights">${weightHtml}</div><div class="hex-result">= ${hexDigit}</div></div>`;
+            });
+            hexBoxes += `</div>`;
+            explanation = hexBoxes;
+          }
+        }
+        else if (toBase === "10") {
+          let chars = value.toUpperCase().split("").reverse();
+          let steps = `<p>Expansion Method:</p><div class="steps-column">`;
+          chars.forEach((ch, i) => {
+            let digit = parseInt(ch, fromNumBase);
+            steps += `<div class="step-box">${ch} × ${fromNumBase}<sup>${i}</sup> = ${digit * (fromNumBase**i)}</div>`;
+          });
+          steps += `</div>`;
+          explanation = steps;
+        } else {
+          explanation = "<p>Converted using base conversion.</p>";
+        }
+      }
+
+      document.getElementById("results").innerHTML = `
+        <h3>Result:</h3>
+        <div class="solution">
+          <p><strong>${value}</strong> (from ${fromBase}) → <strong>${converted}</strong> (to ${toBase})</p>
+          ${explanation}
+          <p>Final Answer: <strong>${converted}</strong></p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
