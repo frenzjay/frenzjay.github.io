@@ -13,13 +13,9 @@
     <header class="fade-in">
         <nav>
             <div class="logo">
-                <h1>Occultext v10.5</h1>
+                <h1>Occultext v10.6</h1>
                 <span class="franzannrinbo" id="franzannrinbo">Flins will be mine</span>
             </div>
-       <!--     <ul>
-                <li><a href="https://frenzvalios.xya">Home</a></li>
-                <li><a href="https://github.com/franzann/Occultext-Translate-Realtime">Extension</a></li>
-            </ul> -->
         </nav>
     </header>
     <main>
@@ -37,7 +33,10 @@
                 <form id="generate-form">
                     <div class="form-group">
                         <label for="word">Enter a word:</label>
-                        <textarea id="word" name="word" rows="8" required></textarea>
+                        <div class="input-with-clear">
+                            <textarea id="word" name="word" rows="8" required oninput="toggleClearButton('word-clear', this)"></textarea>
+                            <button type="button" id="word-clear" class="clear-btn" onclick="clearField('word')" style="display:none;">✕</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="generate-secret_key">Secret key (optional):</label>
@@ -51,7 +50,10 @@
                 <form id="decrypt-form" onsubmit="removeSpaces(); removeAllSpaces()">
                     <div class="form-group">
                         <label for="occultext">Enter an Occultext:</label>
-                        <textarea id="occultext" name="occultext" rows="8"></textarea>
+                        <div class="input-with-clear">
+                            <textarea id="occultext" name="occultext" rows="8" oninput="toggleClearButton('occultext-clear', this)"></textarea>
+                            <button type="button" id="occultext-clear" class="clear-btn" onclick="clearField('occultext')" style="display:none;">✕</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="decrypt-secret_key">Secret key (optional):</label>
@@ -79,16 +81,7 @@
         </section>
     </main>
     <footer class="fade-in">
-        <p>Made by Frenz because he was bored lol. Last edit: 9:53 pm - August 21,2025</p>
+        <p>Made by Frenz because he was bored lol. Last edit: 9:49 pm - September 9, 2025</p>
     </footer>
-    <script>
-    window.addEventListener("message", (event) => {
-  if (event.origin !== "https://frenzjay.github.io/occultext") return;
-
-  if (event.data.type === "resize") {
-    document.getElementById("myIframe").style.height = event.data.height + "px";
-  }
-});
-</script>
 </body>
 </html>

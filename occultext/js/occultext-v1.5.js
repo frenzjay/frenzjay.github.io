@@ -128,3 +128,25 @@ function removeAllSpaces() {
     }
     occultextTextarea.value = occultext;
 }
+function clearField(id) {
+            const field = document.getElementById(id);
+            field.value = "";
+            toggleClearButton(id + "-clear", field);
+            field.focus();
+        }
+
+        function toggleClearButton(btnId, field) {
+            const btn = document.getElementById(btnId);
+            if (field.value.trim() !== "") {
+                btn.style.display = "inline-block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        window.addEventListener("message", (event) => {
+            if (event.origin !== "https://frenzjay.github.io/occultext") return;
+            if (event.data.type === "resize") {
+                document.getElementById("myIframe").style.height = event.data.height + "px";
+            }
+        });
