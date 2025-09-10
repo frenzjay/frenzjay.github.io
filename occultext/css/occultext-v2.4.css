@@ -315,7 +315,7 @@ footer a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin: 10px 0;
     color: var(--text-color);
 
     opacity: 0;
