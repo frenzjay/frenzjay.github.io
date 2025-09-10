@@ -40,6 +40,9 @@ document.getElementById('generate-form').addEventListener('submit', function(eve
     event.preventDefault();
     const word = document.getElementById('word').value;
     const secretKey = document.getElementById('generate-secret_key').value;
+
+    showLoading();
+
     fetch('https://frenzvalios.pythonanywhere.com/api/occultext/generate', {
         method: 'POST',
         headers: {
@@ -49,6 +52,7 @@ document.getElementById('generate-form').addEventListener('submit', function(eve
     })
     .then(response => response.json())
     .then(data => {
+        hideLoading();
         if (data.error) {
             displayError(data.error);
         } else {
@@ -56,16 +60,23 @@ document.getElementById('generate-form').addEventListener('submit', function(eve
             scrollToResults();
         }
     })
-    .catch(() => displayError('-1 - API error'));
+    .catch(() => {
+        hideLoading();
+        displayError('-1 - API error');
+    });
 });
 
 document.getElementById('decrypt-form').addEventListener('submit', function(event) {
     event.preventDefault();
     const occultext = document.getElementById('occultext').value;
     const secretKey = document.getElementById('decrypt-secret_key').value;
+
+    showLoading();
+
     fetch(`https://frenzvalios.pythonanywhere.com/api/occultext/decrypt/atlas?occultext=${encodeURIComponent(occultext)}&secret_key=${encodeURIComponent(secretKey)}`)
     .then(response => response.json())
     .then(data => {
+        hideLoading();
         if (data.error) {
             displayError(data.error);
         } else {
@@ -73,7 +84,10 @@ document.getElementById('decrypt-form').addEventListener('submit', function(even
             scrollToResults();
         }
     })
-    .catch(() => displayError('-1 - API error'));
+    .catch(() => {
+        hideLoading();
+        displayError('-1 - API error');
+    });
 });
 
 function displayGenerateResult(original, occultext) {
@@ -150,3 +164,13 @@ function clearField(id) {
                 document.getElementById("myIframe").style.height = event.data.height + "px";
             }
         });
+function showLoading() {
+    const loader = document.getElementById('loading');
+    loader.classList.add('show');
+    document.getElementById('results').hidden = true;
+}
+
+function hideLoading() {
+    const loader = document.getElementById('loading');
+    loader.classList.remove('show');
+}
