@@ -5,48 +5,15 @@
   <title>Number converter</title>
   <link rel="stylesheet" href="/static/css/notes-style.css">
   <style>
-    .converter-box {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      max-width: 500px;
-      margin-top: 1rem;
-      background: #1e293b;
-      padding: 1.2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    input, select, button {
-      padding: 0.6rem 0.8rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #334155;
-      background: #0f172a;
-      color: #f8fafc;
-      transition: all 0.2s ease-in-out;
-    }
+    .converter-box { display: flex; flex-direction: column; gap: 0.6rem; max-width: 500px; margin-top: 1rem; background: #1e293b; padding: 1.2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    input, select, button { padding: 0.6rem 0.8rem; font-size: 1rem; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #f8fafc; transition: all 0.2s ease-in-out; }
     input::placeholder { color: #94a3b8; }
-    input:focus, select:focus {
-      outline: none; border-color: #38bdf8;
-      box-shadow: 0 0 0 3px rgba(56,189,248,0.4);
-    }
-    select {
-      appearance: none;
-      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' width='20' viewBox='0 0 20 20'><path d='M5.516 7.548l4.484 4.484 4.484-4.484-1.06-1.06L10 9.91 6.576 6.488z'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 0.7rem center;
-      background-size: 1rem;
-      padding-right: 2rem;
-      cursor: pointer;
-    }
+    input:focus, select:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56,189,248,0.4); }
+    select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' width='20' viewBox='0 0 20 20'><path d='M5.516 7.548l4.484 4.484 4.484-4.484-1.06-1.06L10 9.91 6.576 6.488z'/></svg>"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1rem; padding-right: 2rem; cursor: pointer; }
     button { background: #38bdf8; color: #0f172a; font-weight: bold; border: none; }
     button:hover { background: #0ea5e9; }
     button:active { transform: scale(0.97); }
-    .solution, .error-box {
-      background: #1e293b; color: #f8fafc;
-      border-radius: 12px; padding: 1rem; margin-top: 1rem;
-      font-family: monospace; overflow-x: auto;
-    }
+    .solution, .error-box { background: #1e293b; color: #f8fafc; border-radius: 12px; padding: 1rem; margin-top: 1rem; font-family: monospace; overflow-x: auto; }
     .error-box { border: 1px solid #ef4444; color: #fca5a5; }
     .division-steps { display: flex; align-items: center; gap: 0.5rem; margin: 1rem 0; }
     .steps-column { display: flex; flex-direction: column; gap: 0.3rem; }
@@ -66,58 +33,46 @@
     <header>
       <h1>CC101 Number converter</h1>
       <div class="subtitle">Sir‚ tapos na po <br> Some features are currently not working <br> If you want to help, please make a commit on the github repo</div>
-    </header>
-
-    <section class="card">
-      <h2>Convert</h2>
-      <div class="converter-box">
-        <input type="text" id="inputNumber" placeholder="Enter number or text" />
-        <label>From:</label>
-        <select id="fromBase">
-          <option value="10">Decimal</option>
-          <option value="2">Binary</option>
-          <option value="8">Octal</option>
-          <option value="16">Hexadecimal</option>
-          <option value="text">Text</option>
-          <option value="binaryText">Binary (Text)</option>
-        </select>
-        <label>To:</label>
-        <select id="toBase">
-          <option value="2">Binary</option>
-          <option value="8">Octal</option>
-          <option value="16">Hexadecimal</option>
-          <option value="10">Decimal</option>
-          <option value="text">Text</option>
-          <option value="binaryText">Binary (Text)</option>
-        </select>
-        <button onclick="convertNumber()">Convert</button>
-      </div>
-      <div id="results"></div>
-    </section>
-
-    <p class="footer">Made with ❤️ by Frenz</p>
+    </header><section class="card">
+  <h2>Convert</h2>
+  <div class="converter-box">
+    <input type="text" id="inputNumber" placeholder="Enter number or text" />
+    <label>From:</label>
+    <select id="fromBase">
+      <option value="10">Decimal</option>
+      <option value="2">Binary</option>
+      <option value="8">Octal</option>
+      <option value="16">Hexadecimal</option>
+      <option value="text">Text</option>
+      <option value="binaryText">Binary (Text)</option>
+    </select>
+    <label>To:</label>
+    <select id="toBase">
+      <option value="2">Binary</option>
+      <option value="8">Octal</option>
+      <option value="16">Hexadecimal</option>
+      <option value="10">Decimal</option>
+      <option value="text">Text</option>
+      <option value="binaryText">Binary (Text)</option>
+    </select>
+    <button onclick="convertNumber()">Convert</button>
   </div>
+  <div id="results"></div>
+</section>
 
-  <script>
+<p class="footer">Made with ❤️ by Frenz</p>
+
+  </div>  <script>
     function showError(message) {
-      document.getElementById("results").innerHTML = `
-        <div class="error-box"><strong>Error:</strong> ${message}</div>
-      `;
+      document.getElementById("results").innerHTML = `<div class="error-box"><strong>Error:</strong> ${message}</div>`;
     }
-
     function convertNumber() {
       const value = document.getElementById("inputNumber").value.trim();
       const fromBase = document.getElementById("fromBase").value;
       const toBase = document.getElementById("toBase").value;
-
-      if (!value) {
-        showError("Please enter a value to convert.");
-        return;
-      }
-
+      if (!value) { showError("Please enter a value to convert."); return; }
       let explanation = "";
       let converted = "";
-
       if (fromBase === "text" && toBase === "binaryText") {
         let binaries = [];
         for (let i = 0; i < value.length; i++) {
@@ -125,23 +80,15 @@
           binaries.push(`${value[i]} = ${bin}`);
         }
         converted = binaries.map(b => b.split(" = ")[1]).join(" ");
-        explanation = "<p>Each character converted to 8-bit binary:</p>" +
-                      binaries.map(b => `<div class="step-box">${b}</div>`).join("");
+        explanation = "<p>Each character converted to 8-bit binary:</p>" + binaries.map(b => `<div class="step-box">${b}</div>`).join("");
       }
       else if (fromBase === "binaryText" && toBase === "text") {
-        if (!/^[01\s]+$/.test(value)) {
-          showError("Binary (Text) can only contain 0 and 1 (optionally spaces). Example: 01001000 01101001");
-          return;
-        }
+        if (!/^[01\s]+$/.test(value)) { showError("Binary (Text) can only contain 0 and 1"); return; }
         let groups = value.replace(/\s+/g, "").match(/.{1,8}/g);
-        if (!groups || groups[groups.length-1].length !== 8) {
-          showError("Binary (Text) must be in groups of 8 bits (1 byte per character). Example: 01001000 = H");
-          return;
-        }
+        if (!groups || groups[groups.length-1].length !== 8) { showError("Binary (Text) must be in groups of 8 bits"); return; }
         let chars = groups.map(g => String.fromCharCode(parseInt(g, 2)));
         converted = chars.join("");
-        explanation = "<p>Each 8 bits converted back to ASCII:</p>" +
-                      groups.map((g,i) => `<div class="step-box">${g} = ${chars[i]}</div>`).join("");
+        explanation = "<p>Each 8 bits converted back to ASCII:</p>" + groups.map((g,i) => `<div class="step-box">${g} = ${chars[i]}</div>`).join("");
       }
       else if (fromBase === "text" || toBase === "text" || fromBase === "binaryText" || toBase === "binaryText") {
         showError("Invalid conversion. You can only convert Text ↔ Binary (Text), not directly into Decimal, Hex, or Octal.");
@@ -151,17 +98,14 @@
         let fromNumBase = parseInt(fromBase);
         let toNumBase = parseInt(toBase);
         let decimalValue;
-
-        try {
-          decimalValue = parseInt(value, fromNumBase);
-          if (isNaN(decimalValue)) throw new Error();
-        } catch {
-          showError(`The input "${value}" is not valid for base ${fromNumBase}.`);
-          return;
-        }
-
+        let chars = value.toUpperCase().split("").reverse();
+        decimalValue = 0;
+        chars.forEach((ch, i) => {
+          let digit = parseInt(ch, 36);
+          if (isNaN(digit)) digit = 0;
+          decimalValue += digit * (fromNumBase ** i);
+        });
         converted = decimalValue.toString(toNumBase).toUpperCase();
-
         if (fromBase === "10") {
           function divisionStepsVisual(num, base) {
             let steps = [];
@@ -171,45 +115,36 @@
               steps.push(`${n} ÷ ${base} = ${Math.floor(n/base)} R ${remainder}`);
               n = Math.floor(n / base);
             }
-            let stepBoxes = steps.map(s => `<div class="step-box">${s}</div>`).join("");
-            return `<div class="division-steps"><div class="steps-column">${stepBoxes}</div><div class="arrow"></div></div>`;
+            return steps.map(s => `<div class="step-box">${s}</div>`).join("");
           }
-          if (toBase === "2") explanation = divisionStepsVisual(decimalValue, 2);
-          if (toBase === "8") explanation = divisionStepsVisual(decimalValue, 8);
-          if (toBase === "16") {
-            let bin = decimalValue.toString(2);
-            while (bin.length % 4 !== 0) bin = "0" + bin;
-            let groups = bin.match(/.{1,4}/g);
-            let hexBoxes = `<p>Binary form: ${bin}</p><div class="hex-boxes">`;
-            groups.forEach((grp) => {
-              const weights = [8,4,2,1];
-              let sum = 0, bitsHtml = "", weightHtml = "";
-              grp.split("").forEach((bit, i) => {
-                sum += parseInt(bit) * weights[i];
-                bitsHtml += `<div class="bit">${bit}</div>`;
-                weightHtml += `<div>${weights[i]}</div>`;
-              });
-              let hexDigit = sum.toString(16).toUpperCase();
-              hexBoxes += `<div class="hex-group"><div class="bits">${bitsHtml}</div><div class="weights">${weightHtml}</div><div class="hex-result">= ${hexDigit}</div></div>`;
-            });
-            hexBoxes += `</div>`;
-            explanation = hexBoxes;
-          }
+          let divSteps = divisionStepsVisual(decimalValue, toNumBase);
+          explanation = `<p>Division Method:</p><div class="steps-column">${divSteps}</div>`;
+          let digits = converted.split("").reverse();
+          let expSteps = "<p>Expansion Method:</p><div class='steps-column'>";
+          digits.forEach((d, i) => {
+            let digitVal = parseInt(d, 36);
+            expSteps += `<div class='step-box'>${d} × ${toNumBase}<sup>${i}</sup> = ${digitVal * (toNumBase ** i)}</div>`;
+          });
+          expSteps += "</div>";
+          explanation += expSteps;
         }
         else if (toBase === "10") {
-          let chars = value.toUpperCase().split("").reverse();
           let steps = `<p>Expansion Method:</p><div class="steps-column">`;
+          let total = 0;
           chars.forEach((ch, i) => {
-            let digit = parseInt(ch, fromNumBase);
-            steps += `<div class="step-box">${ch} × ${fromNumBase}<sup>${i}</sup> = ${digit * (fromNumBase**i)}</div>`;
+            let digit = parseInt(ch, 36);
+            if (isNaN(digit)) digit = 0;
+            let term = digit * (fromNumBase ** i);
+            steps += `<div class="step-box">${ch} × ${fromNumBase}<sup>${i}</sup> = ${term}</div>`;
+            total += term;
           });
           steps += `</div>`;
           explanation = steps;
+          converted = total.toString();
         } else {
-          explanation = "<p>Converted using base conversion.</p>";
+          explanation = "<p>Converted</p>";
         }
       }
-
       document.getElementById("results").innerHTML = `
         <h3>Result:</h3>
         <div class="solution">
@@ -219,6 +154,5 @@
         </div>
       `;
     }
-  </script>
-</body>
+  </script></body>
 </html>
