@@ -5,15 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/frenz.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/occultext-v2.5.css">
+    <link rel="stylesheet" href="css/occultext-v2.6.css">
     <link rel="stylesheet" href="css/anim.css">
-    <script src="js/occultext-v1.8.js" defer></script>
+    <script src="js/occultext-v1.9.js" defer></script>
 </head>
 <body>
+<div class="sparkles">
+  <span>✦</span>
+  <span>✿</span>
+  <span>❀</span>
+  <span>✧</span>
+  <span>✦</span>
+  <span>✿</span>
+  <span>❀</span>
+  <span>✧</span>
+</div>
     <header class="fade-in">
         <nav>
             <div class="logo">
-                <h1>Occultext v10.9</h1>
+                <h1>Occultext v11</h1>
                 <span class="secret" id="secret"></span>
             </div>
         </nav>
@@ -23,10 +33,11 @@
             <h2>The Mysterious Language</h2>
             <p>Turn ordinary Text into Occultext.</p>
         </section>
+
         <section class="occultext-container">
             <div class="le-button">
-                <button id="toggle-to-generate" class="toggle-btn active">Conceal Occultext</button>
-                <button id="toggle-to-decrypt" class="toggle-btn">Uncover Occultext</button>
+                <button id="toggle-to-generate" class="btn toggle-btn active">Conceal Occultext</button>
+                <button id="toggle-to-decrypt" class="btn toggle-btn">Uncover Occultext</button>
             </div>
             <div class="occultext-form fade-in" id="generate-form-container">
                 <h3>Conceal as Occultext</h3>
@@ -34,57 +45,69 @@
                     <div class="form-group">
                         <label for="word">Enter a word:</label>
                         <div class="input-with-clear">
-                            <textarea id="word" name="word" rows="8" required oninput="toggleClearButton('word-clear', this)"></textarea>
-                            <button type="button" id="word-clear" class="clear-btn" onclick="clearField('word')" style="display:none;">✕</button>
+                            <textarea id="word" name="word" rows="8" required 
+                                oninput="toggleClearButton('word-clear', this)"></textarea>
+                            <button type="button" id="word-clear" 
+                                class="btn btn-clear hidden" 
+                                onclick="clearField('word')">✕</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="generate-secret_key">Secret key (optional):</label>
                         <input id="generate-secret_key" name="secret_key" type="text">
                     </div>
-                    <button type="submit">Veil it!</button>
+                    <button type="submit" class="btn btn-primary">Veil it!</button>
                 </form>
             </div>
-            <div class="occultext-form fade-in" id="decrypt-form-container" style="display:none;">
+            <div class="occultext-form fade-in hidden" id="decrypt-form-container">
                 <h3>Uncover from Occultext</h3>
                 <form id="decrypt-form" onsubmit="removeSpaces(); removeAllSpaces()">
                     <div class="form-group">
                         <label for="occultext">Enter an Occultext:</label>
                         <div class="input-with-clear">
-                            <textarea id="occultext" name="occultext" rows="8" oninput="toggleClearButton('occultext-clear', this)"></textarea>
-                            <button type="button" id="occultext-clear" class="clear-btn" onclick="clearField('occultext')" style="display:none;">✕</button>
+                            <textarea id="occultext" name="occultext" rows="8" 
+                                oninput="toggleClearButton('occultext-clear', this)"></textarea>
+                            <button type="button" id="occultext-clear" 
+                                class="btn btn-clear hidden" 
+                                onclick="clearField('occultext')">✕</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="decrypt-secret_key">Secret key (optional):</label>
                         <input id="decrypt-secret_key" name="secret_key" type="text">
                     </div>
-                    <button type="submit">Unveil it!</button>
+                    <button type="submit" class="btn btn-primary">Unveil it!</button>
                 </form>
             </div>
         </section>
-        <div id="loading" class="loading" hidden>
-    <div class="spinner"></div>
-</div>
-        <section class="results" id="results" hidden>
-            <div class="result fade-in" id="generate-result" hidden>
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+        </div>
+        <section class="results hidden" id="results">
+            <div class="result fade-in hidden" id="generate-result">
                 <h3>Original:</h3>
                 <pre id="original-word"></pre>
                 <h3>Occultext:</h3>
                 <pre id="occultext-word"></pre>
-                <button class="copy" onclick="copyToClipboard(document.getElementById('occultext-word').textContent)">Copy Occultext</button>
+                <button class="btn btn-secondary" 
+                        onclick="copyToClipboard(document.getElementById('occultext-word').textContent)">
+                    Copy Occultext
+                </button>
             </div>
-            <div class="result fade-in" id="decrypt-result" hidden>
+
+            <div class="result fade-in hidden" id="decrypt-result">
                 <h3>Occultext:</h3>
                 <div id="decrypted-word"></div>
             </div>
-            <div class="error fade-in" id="error-result" hidden>
+
+            <div class="error fade-in hidden" id="error-result">
                 <p id="error-message"></p>
             </div>
         </section>
     </main>
+
     <footer class="fade-in">
-        <p>Made by Frenz because he was bored lol. Last edit: 9:27 pm - September 18, 2025</p>
+        <p>Made by Frenz. Last edit: 12:04 am - September 19, 2025</p>
     </footer>
 </body>
 </html>
