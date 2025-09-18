@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var scrollpos = localStorage.getItem('scrollpos');
     if (scrollpos) window.scrollTo(0, scrollpos);
-
     const toggleToGenerateBtn = document.getElementById('toggle-to-generate');
     const toggleToDecryptBtn = document.getElementById('toggle-to-decrypt');
     const generateFormContainer = document.getElementById('generate-form-container');
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleToGenerateBtn.classList.add('active');
         toggleToDecryptBtn.classList.remove('active');
     });
-
     toggleToDecryptBtn.addEventListener('click', function() {
         generateFormContainer.style.display = 'none';
         decryptFormContainer.style.display = 'block';
@@ -21,28 +19,14 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleToDecryptBtn.classList.add('active');
     });
 });
-
 window.onbeforeunload = function(e) {
     localStorage.setItem('scrollpos', window.scrollY);
 };
-
-const span = document.getElementById('franzannrinbo');
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-let index = 0;
-
-function rinboNiFraanzann() {
-    span.style.color = colors[index];
-    index = (index + 1) % colors.length;
-}
-setInterval(rinboNiFraanzann, 100);
-
 document.getElementById('generate-form').addEventListener('submit', function(event) {
     event.preventDefault();
     const word = document.getElementById('word').value;
     const secretKey = document.getElementById('generate-secret_key').value;
-
     showLoading();
-
     fetch('https://frenzvalios.pythonanywhere.com/api/occultext/generate', {
         method: 'POST',
         headers: {
@@ -65,14 +49,11 @@ document.getElementById('generate-form').addEventListener('submit', function(eve
         displayError('-1 - API error');
     });
 });
-
 document.getElementById('decrypt-form').addEventListener('submit', function(event) {
     event.preventDefault();
     const occultext = document.getElementById('occultext').value;
     const secretKey = document.getElementById('decrypt-secret_key').value;
-
     showLoading();
-
     fetch(`https://frenzvalios.pythonanywhere.com/api/occultext/decrypt/atlas?occultext=${encodeURIComponent(occultext)}&secret_key=${encodeURIComponent(secretKey)}`)
     .then(response => response.json())
     .then(data => {
@@ -89,7 +70,6 @@ document.getElementById('decrypt-form').addEventListener('submit', function(even
         displayError('-1 - API error');
     });
 });
-
 function displayGenerateResult(original, occultext) {
     document.getElementById('original-word').textContent = original;
     document.getElementById('occultext-word').textContent = occultext;
@@ -98,7 +78,6 @@ function displayGenerateResult(original, occultext) {
     document.getElementById('error-result').hidden = true;
     document.getElementById('results').hidden = false;
 }
-
 function displayDecryptResult(decrypted) {
     document.getElementById('decrypted-word').innerHTML = decrypted;
     document.getElementById('decrypt-result').hidden = false;
@@ -106,7 +85,6 @@ function displayDecryptResult(decrypted) {
     document.getElementById('error-result').hidden = true;
     document.getElementById('results').hidden = false;
 }
-
 function displayError(message) {
     document.getElementById('error-message').textContent = message;
     document.getElementById('error-result').hidden = false;
@@ -114,15 +92,12 @@ function displayError(message) {
     document.getElementById('decrypt-result').hidden = true;
     document.getElementById('results').hidden = false;
 }
-
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text);
 }
-
 function scrollToResults() {
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
-
 function removeSpaces() {
     const occultextTextarea = document.getElementById('occultext');
     let occultext = occultextTextarea.value;
@@ -130,7 +105,6 @@ function removeSpaces() {
     occultext = occultext.trimEnd();
     occultextTextarea.value = occultext;
 }
-
 function removeAllSpaces() {
     const occultextTextarea = document.getElementById('occultext');
     let occultext = occultextTextarea.value;
@@ -148,7 +122,6 @@ function clearField(id) {
             toggleClearButton(id + "-clear", field);
             field.focus();
         }
-
         function toggleClearButton(btnId, field) {
             const btn = document.getElementById(btnId);
             if (field.value.trim() !== "") {
@@ -157,7 +130,6 @@ function clearField(id) {
                 btn.style.display = "none";
             }
         }
-
         window.addEventListener("message", (event) => {
             if (event.origin !== "https://frenzjay.github.io/occultext") return;
             if (event.data.type === "resize") {
@@ -169,8 +141,37 @@ function showLoading() {
     loader.classList.add('show');
     document.getElementById('results').hidden = true;
 }
-
 function hideLoading() {
     const loader = document.getElementById('loading');
     loader.classList.remove('show');
 }
+(function () {
+  const el = document.getElementById("secret");
+  if (!el) return;
+  function nextbd(ref = new Date()) {
+    let year = ref.getFullYear();
+    let target = new Date(year, 9, 5, 0, 0, 0, 0);
+    if (target <= ref) target = new Date(year + 1, 9, 5, 0, 0, 0, 0);
+    return target;
+  }
+          let target = nextbd();
+  function pad(n) {
+    return n.toString().padStart(2, "0");
+  }
+  function update() {
+    const now = new Date();
+    let diff = target - now;
+    if (diff <= 0) {
+      el.textContent = "Secret";
+      return;
+    }
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    el.textContent = `??? ${days} : ${pad(hours)} : ${pad(minutes)} : ${pad(seconds)} ???`;
+  }
+  update();
+  setInterval(update, 1000);
+})();
