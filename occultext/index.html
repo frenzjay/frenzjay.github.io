@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Occultext - The mysterious language</title>
+    <title>Occultext</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/frenz.ico" type="image/x-icon">
@@ -31,7 +31,6 @@
     <main>
         <section class="frenz slide-in">
             <h2>The Mysterious Language</h2>
-            <p>Turn ordinary Text into Occultext.</p>
         </section>
 
         <section class="occultext-container">
@@ -40,10 +39,10 @@
                 <button id="toggle-to-decrypt" class="btn toggle-btn">Uncover Occultext</button>
             </div>
             <div class="occultext-form fade-in" id="generate-form-container">
-                <h3>Conceal as Occultext</h3>
+                <h3>Conceal an Occultext</h3>
                 <form id="generate-form">
                     <div class="form-group">
-                        <label for="word">Enter a word:</label>
+                        <label for="word">Enter your text</label>
                         <div class="input-with-clear">
                             <textarea id="word" name="word" rows="8" required 
                                 oninput="toggleClearButton('word-clear', this)"></textarea>
@@ -53,17 +52,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="generate-secret_key">Secret key (optional):</label>
+                        <label for="generate-secret_key">Secret key (optional)</label>
                         <input id="generate-secret_key" name="secret_key" type="text">
                     </div>
                     <button type="submit" class="btn btn-primary">Veil it!</button>
                 </form>
             </div>
             <div class="occultext-form fade-in hidden" id="decrypt-form-container">
-                <h3>Uncover from Occultext</h3>
+                <h3>Uncover an Occultext</h3>
                 <form id="decrypt-form" onsubmit="removeSpaces(); removeAllSpaces()">
                     <div class="form-group">
-                        <label for="occultext">Enter an Occultext:</label>
+                        <label for="occultext">Enter an Occultext</label>
                         <div class="input-with-clear">
                             <textarea id="occultext" name="occultext" rows="8" 
                                 oninput="toggleClearButton('occultext-clear', this)"></textarea>
@@ -73,7 +72,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="decrypt-secret_key">Secret key (optional):</label>
+                        <label for="decrypt-secret_key">Secret key (optional)</label>
                         <input id="decrypt-secret_key" name="secret_key" type="text">
                     </div>
                     <button type="submit" class="btn btn-primary">Unveil it!</button>
@@ -107,7 +106,7 @@
     </main>
 
     <footer class="fade-in">
-        <p>Made by Frenz. Last edit: 12:04 am - September 19, 2025</p>
+        <p>Made by Frenz. Last edit: 6:52 pm - September 20, 2025</p>
     </footer>
 </body>
 </html>
